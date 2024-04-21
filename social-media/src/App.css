@@ -8,6 +8,7 @@
 .sidebar{
   height:100vh;
   background-color:rgb(33, 37, 41); 
+  z-index: 2;
 
 }
 .sidebar a{
@@ -21,4 +22,31 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+.postCard{
+  margin: 2rem 1rem;
+}
+.postlist{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.hashtags{
+  
+  padding:10px;
+  margin: 0px 15px;
+  font-size: 2rem;
+  
+  text-align: center;
+
+
+}
+.bttn{
+  display: block;
+  align-self: center;
+}
+.myAlert{
+  margin:15px 0 0 0;
+  width: fit-content;
+  padding: 5px;
 }
