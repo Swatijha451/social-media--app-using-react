@@ -16,14 +16,17 @@ function App() {
 
   return (
     <PostListProvider>
-    <div className='main-content'>
-      <Sidebar selectedTab={selectedTab} setselectedTab={setselectedTab}></Sidebar>
+      <div className="main-content">
+      <Sidebar selectedTab={selectedTab} setselectedTab={setselectedTab}></Sidebar>  
       <div className='content'>
       <Header></Header>
-       {selectedTab==="Home"?<PostList></PostList>:<CreatePost></CreatePost>}; 
+      <div className='mypostlist'>
+      {selectedTab==="Home"?<PostList></PostList>:<CreatePost></CreatePost>} 
+      <br />
+      </div>
       <Footer></Footer>
       </div>
-    </div>
+      </div>
     </PostListProvider>
 
   );

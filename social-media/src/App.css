@@ -3,12 +3,24 @@
 
 }
 .content{
+  background-color: rgba(201, 135, 175, 0.322);
+  height: 100vh;
   width: 100%;
+  
+}.myfooter{
+  background-color: rgba(201, 135, 175, 0.322);
+  width: 100%;
+  
+}
+.mypostlist{
+  height: 70%;
 }
 .sidebar{
-  height:100vh;
+  width: 15rem;
+  height: 100vh;
   background-color:rgb(33, 37, 41); 
   z-index: 2;
+  overflow: hidden;
 
 }
 .sidebar a{
@@ -25,6 +37,12 @@
 }
 .postCard{
   margin: 2rem 1rem;
+  display: flex;
+  background-color: antiquewhite;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  
 }
 .postlist{
   display: flex;
