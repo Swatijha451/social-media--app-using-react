@@ -4,12 +4,14 @@
 }
 .content{
   background-color: rgba(201, 135, 175, 0.322);
-  height: 100vh;
+  height: 100%;
   width: 100%;
   
 }.myfooter{
   background-color: rgba(201, 135, 175, 0.322);
   width: 100%;
+  height: 30%;
+
   
 }
 .mypostlist{
@@ -17,7 +19,7 @@
 }
 .sidebar{
   width: 15rem;
-  height: 100vh;
+  /* height: 100%; */
   background-color:rgb(33, 37, 41); 
   z-index: 2;
   overflow: hidden;
@@ -36,17 +38,13 @@
   justify-content: flex-end;
 }
 .postCard{
-  margin: 2rem 1rem;
-  display: flex;
-  background-color: antiquewhite;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  margin: 1rem 1rem;
+  
   
 }
 .postlist{
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   flex-wrap: wrap;
 }
 .hashtags{
@@ -67,4 +65,10 @@
   margin:15px 0 0 0;
   width: fit-content;
   padding: 5px;
+}
+.myform{
+  width: 80%;
+  margin-top: 2%;
+  margin-left: 10%;
+
 }
