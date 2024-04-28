@@ -4,6 +4,7 @@ export const PostList=createContext({
 
     postList:[],
     addPost:()=>{},
+    addInitialPost:()=>{},
     deltePost:()=>{},
 });
 
@@ -14,9 +15,13 @@ const postListReducer=(currPostList,action)=>{
         newPostList = currPostList.filter((post)=>post.id !==action.payload.postId);
 
     }
+    else if(action.type==="ADD_INITIAL_POSTS"){
+        newPostList=action.payload.posts;
+    }
     else if(action.type==="ADD_POST"){
         newPostList=[action.payload,...currPostList]
     }
+
     return newPostList;
 }
 
@@ -24,7 +29,7 @@ const postListReducer=(currPostList,action)=>{
 
 const PostListProvider=({children})=>{
 
-    const [postList,dispatchpostList]=useReducer(postListReducer,DEFAULT_POST_LIST);
+    const [postList,dispatchpostList]=useReducer(postListReducer,[]);
 
     const addPost=(userID,title,content,reactions,tags)=>{
     dispatchpostList({
@@ -39,6 +44,15 @@ const PostListProvider=({children})=>{
         },
     })
     };
+
+    const addInitialPost=(posts)=>{
+        dispatchpostList({
+            type:"ADD_INITIAL_POSTS",
+            payload:{
+                posts:posts,
+            },
+        })
+        };
     
     const deletePost=(postId)=>{
         // console.log(`deletePost called for${postId}`)
@@ -54,6 +68,7 @@ const PostListProvider=({children})=>{
     value={{
         postList:postList,
         addPost:addPost,
+        addInitialPost:addInitialPost,
         deletePost:deletePost,
 
     }}>

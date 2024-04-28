@@ -1,6 +1,5 @@
-
-import './App.css'
-import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -12,24 +11,26 @@ import PostListProvider from './store/postlistStore';
 import { useState } from 'react';
 
 function App() {
-   const [selectedTab,setselectedTab]=useState("Home");
+	const [selectedTab, setselectedTab] = useState('Home');
 
-  return (
-    <PostListProvider>
-      <div className="main-content">
-      <Sidebar selectedTab={selectedTab} setselectedTab={setselectedTab}></Sidebar>  
-      <div className='content'>
-      <Header></Header>
-      <div className='mypostlist'>
-      {selectedTab==="Home"?<PostList></PostList>:<CreatePost></CreatePost>} 
-      <br />
-      </div>
-      <Footer></Footer>
-      </div>
-      </div>
-    </PostListProvider>
-
-  );
+	return (
+		<PostListProvider>
+			<div className="main-content">
+				<Sidebar
+					selectedTab={selectedTab}
+					setselectedTab={setselectedTab}></Sidebar>
+				 <div className="content">
+					<Header></Header>
+					{selectedTab === 'Home' ? (
+						<PostList></PostList>
+					) : (
+						<CreatePost></CreatePost>
+					)}
+					<Footer></Footer>
+				</div>
+			 </div> 
+		</PostListProvider>
+	);
 }
 
-export default App
+export default App;
