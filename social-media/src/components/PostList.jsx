@@ -10,12 +10,17 @@ const PostList=()=>{
     const [loader, setLoader]=useState(false);
     useEffect(()=>{
         setLoader(true);
-        fetch('https://dummyjson.com/posts')
+        const controller= new AbortController();
+        const signal=controller.signal;
+        fetch('https://dummyjson.com/posts',{signal})
         .then(res => res.json())
         .then(data=>{
             addInitialPost(data.posts)
             setLoader(false);
         });
+        return ()=>{
+            controller.abort();
+        }
         
     },[])
 
