@@ -1,10 +1,10 @@
-import { createContext, useCallback, useReducer } from "react";
+import { createContext, useCallback, useReducer, useState, useEffect } from "react";
 
 export const PostList=createContext({
 
     postList:[],
+    loader:false,
     addPost:()=>{},
-    addInitialPost:()=>{},
     deltePost:()=>{},
 });
 
@@ -30,18 +30,12 @@ const postListReducer=(currPostList,action)=>{
 const PostListProvider=({children})=>{
 
     const [postList,dispatchpostList]=useReducer(postListReducer,[]);
+    const [loader, setLoader]=useState(false);
 
-    const addPost=(userID,title,content,reactions,tags)=>{
+    const addPost=(mypost)=>{
     dispatchpostList({
         type:"ADD_POST",
-        payload:{
-            id:Date.now,
-            title:title,
-            body:content,
-            userId:userID,
-            reactions:reactions,
-            tags:tags
-        },
+        payload:mypost
     })
     };
 
@@ -64,11 +58,28 @@ const PostListProvider=({children})=>{
         })
     },[dispatchpostList]);
 
+    
+    useEffect(()=>{
+        setLoader(true);
+        const controller= new AbortController();
+        const signal=controller.signal;
+        fetch('https://dummyjson.com/posts',{signal})
+        .then(res => res.json())
+        .then(data=>{
+            addInitialPost(data.posts)
+            setLoader(false);
+        });
+        return ()=>{
+            controller.abort();
+        }
+        
+    },[]);
+
     return <PostList.Provider 
     value={{
         postList:postList,
         addPost:addPost,
-        addInitialPost:addInitialPost,
+        loader:loader,
         deletePost:deletePost,
 
     }}>
@@ -76,33 +87,5 @@ const PostListProvider=({children})=>{
     </PostList.Provider>
 
 };
-
-const DEFAULT_POST_LIST=[
-    {
-    id:"1",
-    title:"Going to kolkata",
-    body:"Hi friends, I am oing to Kolkata",
-    reactions:0,
-    userId:"swati_jha",
-    tags:["vacations","trip","adventure"],
-},
-{
-    id:"2",
-    title:"Going to kolkata",
-    body:"Hi friends, I am oing to Kolkata",
-    reactions:0,
-    userId:"swati_jha",
-    tags:["vacations","trip","adventure"],
-},
-{
-    id:"3",
-    title:"Going to kolkata",
-    body:"Hi friends, I am oing to Kolkata",
-    reactions:0,
-    userId:"swati_jha",
-    tags:["vacations","trip"],
-},
-];
-
 
 export default PostListProvider;
