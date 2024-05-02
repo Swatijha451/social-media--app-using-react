@@ -13,7 +13,7 @@ return(
     {!loader && postList.length===0 && (<WelcomeMsg></WelcomeMsg>)}
     {!loader && postList.map( (post) => <Post
     key={post.id}
-    mypost={post}></Post>)}
+    post={post}></Post>)}
     </div>
 );
 }

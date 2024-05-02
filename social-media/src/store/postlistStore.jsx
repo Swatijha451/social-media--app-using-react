@@ -32,10 +32,10 @@ const PostListProvider=({children})=>{
     const [postList,dispatchpostList]=useReducer(postListReducer,[]);
     const [loader, setLoader]=useState(false);
 
-    const addPost=(mypost)=>{
+    const addPost=(post)=>{
     dispatchpostList({
         type:"ADD_POST",
-        payload:mypost
+        payload:post
     })
     };
 
@@ -63,7 +63,7 @@ const PostListProvider=({children})=>{
         setLoader(true);
         const controller= new AbortController();
         const signal=controller.signal;
-        fetch('https://dummyjson.com/posts',{signal})
+        fetch('https://dummyjson.com/posts',{ signal })
         .then(res => res.json())
         .then(data=>{
             addInitialPost(data.posts)
